@@ -1,8 +1,9 @@
 #ifndef SASS_TYPES_VALUE_H
 #define SASS_TYPES_VALUE_H
 
-#include <nan.h>
 #include <sass/values.h>
+#include "../common.h"
+#include <napi.h>
 
 namespace SassTypes
 {
@@ -10,7 +11,7 @@ namespace SassTypes
   class Value : public Nan::ObjectWrap {
 
     public:
-      virtual v8::Local<v8::Object> get_js_object() =0;
+      virtual napi_value get_js_object(napi_env env) = 0;
 
       Value() {
 

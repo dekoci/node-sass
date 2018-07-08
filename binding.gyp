@@ -27,16 +27,22 @@
            'SetChecksum': 'true'
         }
       },
+      'cflags!': [ '-fno-exceptions' ],
+      'cflags_cc!': [ '-fno-exceptions' ],
       'xcode_settings': {
         'OTHER_CPLUSPLUSFLAGS': [
           '-std=c++11'
         ],
+        'CLANG_CXX_LIBRARY': 'libc++',
         'OTHER_LDFLAGS': [],
-        'GCC_ENABLE_CPP_EXCEPTIONS': 'NO',
+        'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
         'MACOSX_DEPLOYMENT_TARGET': '10.7'
       },
+      "dependencies": [
+        '<!(node -p "require(\'node-addon-api\').gyp")'
+      ],
       'include_dirs': [
-        '<!(node -e "require(\'nan\')")',
+        '<!@(node -p "require(\'node-addon-api\').include")'
       ],
       'conditions': [
         ['libsass_ext == "" or libsass_ext == "no"', {
